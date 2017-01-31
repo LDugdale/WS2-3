@@ -1,74 +1,66 @@
 package predictive;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
+import java.util.regex.Pattern;
 
 /**
  * Created by mnt_x on 31/01/2017.
  */
 public class PredictivePrototype {
 
+    private static final char[] KEYPAD = "22233344455566677778889999".toCharArray();
+    private static final String[] LETTERS = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
 
-    private static Map<Character, Integer> alphaNumeric = new HashMap<>();
 
+    public static String wordToSignature(String word) {
+        word = word.toLowerCase();
+        StringBuffer SB = new StringBuffer();
+        for (int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            if (Character.isLetter(c)) {
+                SB.append(KEYPAD[c - 97]);
+            } else {
+                SB.append(" ");
+            }
+        }
+        return SB.toString();
+    }
 
-        public static String wordToSignature(String word) {
+    public static Set<String> signatureToWords(String signature) {
 
-            word = word.toLowerCase();
-            StringBuffer SB = new StringBuffer(word);
+        String regEx = "";
+        Set<String> results = new HashSet<String>();
 
-            alphaNumeric.put('a', 2);
-            alphaNumeric.put('b', 2);
-            alphaNumeric.put('c', 2);
-            alphaNumeric.put('d', 3);
-            alphaNumeric.put('e', 3);
-            alphaNumeric.put('f', 3);
-            alphaNumeric.put('g', 4);
-            alphaNumeric.put('h', 4);
-            alphaNumeric.put('i', 4);
-            alphaNumeric.put('j', 5);
-            alphaNumeric.put('k', 5);
-            alphaNumeric.put('l', 5);
-            alphaNumeric.put('m', 6);
-            alphaNumeric.put('n', 6);
-            alphaNumeric.put('o', 6);
-            alphaNumeric.put('p', 7);
-            alphaNumeric.put('q', 7);
-            alphaNumeric.put('r', 7);
-            alphaNumeric.put('s', 7);
-            alphaNumeric.put('t', 8);
-            alphaNumeric.put('u', 8);
-            alphaNumeric.put('v', 8);
-            alphaNumeric.put('w', 9);
-            alphaNumeric.put('x', 9);
-            alphaNumeric.put('y', 9);
-            alphaNumeric.put('z', 9);
+        for (char c : signature.toCharArray()){
+            regEx += "[" + LETTERS[(c - '0') - 2] +"]";
+        }
 
-            for(int i = 0; i < SB.length(); i++) {
+        try( Scanner in = new Scanner( new File("testWords" ) ) ){
 
-                if (alphaNumeric.containsKey(SB.charAt(i))) {
-                    SB.replace(i, i + 1, "" + alphaNumeric.get(SB.charAt(i)));
-                } else {
-                    SB.replace(i, i + 1, " ");
+            while ( in.hasNextLine() ) {
+                String word = in.nextLine();
+                if(word.matches(regEx)){
+                    System.out.println(word);
+                    results.add(word);
                 }
             }
-            return SB.toString();
+
+        } catch(IOException e){
+            System.err.println("Got an IOException: " + e.getMessage());
         }
 
-        public static Set<String> signatureToWords(String signature) {
-
-            File file = new File("testWords.txt");
-            try{
-                Scanner in = new Scanner(file);
-            } catch(Exception e){
-
-            }
-
-        }
+        return results;
+    }
 
 
 
-        public static void main(String [] args){
-            System.out.println(wordToSignature("Home"));
-        }
+
+
+    public static void main(String [] args){
+        System.out.println(wordToSignature("Home"));
+        signatureToWords("2");
+        System.out.println('z' - 97);
+    }
 }
