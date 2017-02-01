@@ -8,7 +8,7 @@ public class Sigs2WordsProto {
     public static void main(String[] args) {
 
         for(String s : args){
-            PredictivePrototype.wordToSignature(s);
+            System.out.println(PredictivePrototype.signatureToWords(s));
         }
 
     }

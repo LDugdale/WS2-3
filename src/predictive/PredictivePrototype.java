@@ -1,9 +1,7 @@
 package predictive;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
-import java.util.regex.Pattern;
 
 /**
  * Created by mnt_x on 31/01/2017.
@@ -28,21 +26,26 @@ public class PredictivePrototype {
         return SB.toString();
     }
 
+
+
     public static Set<String> signatureToWords(String signature) {
 
         String regEx = "";
         Set<String> results = new HashSet<String>();
 
         for (char c : signature.toCharArray()){
-            regEx += "[" + LETTERS[(c - '0') - 2] +"]";
+            if (c >= '2' && c <= '9') {
+                regEx += "[" + LETTERS[(c - '0') - 2] + "]";
+            } else {
+                regEx += " ";
+            }
         }
 
-        try( Scanner in = new Scanner( new File("testWords" ) ) ){
+        try( Scanner in = new Scanner( new File("words" ) ) ){
 
             while ( in.hasNextLine() ) {
                 String word = in.nextLine();
                 if(word.matches(regEx)){
-                    System.out.println(word);
                     results.add(word);
                 }
             }
@@ -54,13 +57,9 @@ public class PredictivePrototype {
         return results;
     }
 
-
-
-
-
     public static void main(String [] args){
-        System.out.println(wordToSignature("Home"));
-        signatureToWords("2");
-        System.out.println('z' - 97);
+        //System.out.println(wordToSignature("Home"));
+        System.out.println(signatureToWords("01"));
+        //System.out.println('z' - 97);
     }
 }
