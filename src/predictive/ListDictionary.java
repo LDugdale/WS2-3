@@ -1,5 +1,4 @@
 package predictive;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -10,7 +9,7 @@ import java.util.*;
 public class ListDictionary implements Dictionary {
 
     private String path;
-    private ArrayList<WordSig> dictionary;
+    private List<WordSig> dictionary;
 
     /**
      *
@@ -41,6 +40,7 @@ public class ListDictionary implements Dictionary {
      *
      */
     public String toString() {
+
         StringBuffer SB = new StringBuffer();
         for (WordSig w : this.dictionary) {
             SB.append("word: " + w.getWords() + "      sig: " + w.getSignature() + "\n");
@@ -63,7 +63,7 @@ public class ListDictionary implements Dictionary {
 
         // setting counter to the original position + 1 to check for extra elements with the same signature above
         int counter = pos + 1;
-        while(dictionary.get(counter).getSignature().equals(signature)){
+        while(counter < dictionary.size() -1 && dictionary.get(counter).getSignature().equals(signature)){
 
             words.add(dictionary.get(counter).getWords());
             counter++;
@@ -71,7 +71,7 @@ public class ListDictionary implements Dictionary {
 
         // setting counter to the original position - 1 to check for extra elements with the same signature below
         counter = pos - 1;
-        while (dictionary.get(counter).getSignature().equals(signature)){
+        while (counter >= 0 && dictionary.get(counter).getSignature().equals(signature)){
 
             words.add(dictionary.get(counter).getWords());
             counter--;

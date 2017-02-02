@@ -1,7 +1,5 @@
 package predictive;
-
-import com.sun.org.apache.xml.internal.utils.Hashtree2Node;
-import sun.security.pkcs11.wrapper.Functions;
+import javafx.scene.control.Tab;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +11,7 @@ import java.util.*;
 public class MapDictionary implements Dictionary {
 
     private String path;
-    private Map <String, String> mapDictionary;
+    private Map <String, Set<String>> mapDictionary;
 
     /**
      *
@@ -22,13 +20,13 @@ public class MapDictionary implements Dictionary {
     public MapDictionary(String path){
 
         this.path = path;
-        mapDictionary = new Hashtable<>();
+        mapDictionary = new TreeMap<>();
 
         try( Scanner in = new Scanner( new File(path) ) ){
 
             while ( in.hasNextLine() ) {
                 String word = in.nextLine();
-                mapDictionary.put(PredictivePrototype.wordToSignature(word), word);
+                mapDictionary.computeIfAbsent(PredictivePrototype.wordToSignature(word), k -> new HashSet<String>()).add(word);
             }
 
         } catch(IOException e){
@@ -36,12 +34,30 @@ public class MapDictionary implements Dictionary {
         }
     }
 
+
+
     @Override
     /**
      *
      */
     public Set<String> signatureToWords(String signature) {
-        return mapDictionary.forEach(m -> mapDictionary.get(m));
-        ;
+
+        Set<String> results = new HashSet<>();
+        //mapDictionary.forEach((s, v) -> results.addAll(v));
+
+        for (Map.Entry<String, Set<String>> key : mapDictionary.entrySet()) {
+            if(key.getKey().equals(signature)){
+                results.addAll(key.getValue());
+            }
+        }
+        return results;
+    }
+
+
+    /**
+     *
+     */
+    public String toString() {
+        return mapDictionary.toString();
     }
 }

@@ -40,15 +40,17 @@ public class WordSig implements Comparable<WordSig> {
     /**
      *
      */
-    public int compareTo(WordSig o) {
+    public int compareTo(WordSig ws) {
 
-        if(Long.parseLong(signature) < Long.parseLong(o.signature)){
+        long sig = Long.parseLong(signature);
+        long otherSig = Long.parseLong(ws.signature);
+
+        if(sig < otherSig){
             return -1;
-        } else if (Long.parseLong(signature) >Long.parseLong( o.signature)){
+        } else if (sig > otherSig){
             return 1;
         } else {
             return 0;
         }
-
     }
 }
