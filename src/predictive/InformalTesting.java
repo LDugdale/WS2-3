@@ -10,5 +10,7 @@ public class InformalTesting {
 
         System.out.println(ld1);
 
+        System.out.println(ld1.signatureToWords("4663"));
+
     }
 }

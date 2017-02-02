@@ -10,31 +10,45 @@ public class WordSig implements Comparable<WordSig> {
     private String words;
     private String signature;
 
+    /**
+     *
+     * @return
+     */
     public String getWords() {
         return words;
     }
 
-    public int getSignature() {
-        return Integer.parseInt(signature);
+    /**
+     *
+     * @return
+     */
+    public String getSignature() {
+        return signature;
     }
 
+    /**
+     *
+     * @param words
+     * @param signature
+     */
     public WordSig(String words, String signature){
         this.words = words;
         this.signature = signature;
     }
 
     @Override
-    public int compareTo(WordSig ws) {
-        final int BEFORE = -1;
-        final int EQUAL = 0;
-        final int AFTER = 1;
+    /**
+     *
+     */
+    public int compareTo(WordSig o) {
 
-        if(this.getSignature() == ws.getSignature()){
-            return EQUAL;
-        } else if (this.getSignature() < ws.getSignature()){
-            return BEFORE;
+        if(Long.parseLong(signature) < Long.parseLong(o.signature)){
+            return -1;
+        } else if (Long.parseLong(signature) >Long.parseLong( o.signature)){
+            return 1;
         } else {
-            return AFTER;
+            return 0;
         }
+
     }
 }
