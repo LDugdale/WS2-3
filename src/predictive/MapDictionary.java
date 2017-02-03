@@ -25,11 +25,13 @@ public class MapDictionary implements Dictionary {
         try( Scanner in = new Scanner( new File(path) ) ){
 
             while ( in.hasNextLine() ) {
+
                 String word = in.nextLine();
-                mapDictionary.computeIfAbsent(PredictivePrototype.wordToSignature(word), k -> new HashSet<String>()).add(word);
+                mapDictionary.computeIfAbsent(PredictivePrototype.wordToSignature(word),k -> new HashSet<String>()).add(word);
             }
 
         } catch(IOException e){
+
             System.err.println("Got an IOException: " + e.getMessage());
         }
     }
@@ -43,7 +45,7 @@ public class MapDictionary implements Dictionary {
     public Set<String> signatureToWords(String signature) {
 
         Set<String> results = new HashSet<>();
-        //mapDictionary.forEach((s, v) -> results.addAll(v));
+        mapDictionary.forEach((s, v) -> results.addAll(v));
 
         for (Map.Entry<String, Set<String>> key : mapDictionary.entrySet()) {
             if(key.getKey().equals(signature)){

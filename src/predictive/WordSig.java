@@ -3,7 +3,7 @@ package predictive;
 import java.util.Comparator;
 
 /**
- * Created by mnt_x on 01/02/2017.
+ *
  */
 public class WordSig implements Comparable<WordSig> {
 
@@ -42,15 +42,17 @@ public class WordSig implements Comparable<WordSig> {
      */
     public int compareTo(WordSig ws) {
 
-        long sig = Long.parseLong(signature);
-        long otherSig = Long.parseLong(ws.signature);
+//        long sig = Long.parseLong(signature);
+//        long otherSig = Long.parseLong(ws.signature);
+//
+//        if(sig < otherSig){
+//            return -1;
+//        } else if (sig > otherSig){
+//            return 1;
+//        } else {
+//            return 0;
+//        }
 
-        if(sig < otherSig){
-            return -1;
-        } else if (sig > otherSig){
-            return 1;
-        } else {
-            return 0;
-        }
+        return this.getSignature().compareTo(ws.getSignature());
     }
 }
