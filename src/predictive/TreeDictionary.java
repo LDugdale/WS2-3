@@ -2,9 +2,7 @@ package predictive;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class TreeDictionary {
 
@@ -13,6 +11,7 @@ public class TreeDictionary {
     private boolean isLeaf;
     private boolean isWord;     //Does this node represent the last character of a word
     private char character;     //The character this node represents
+    private Set<String> words;
 
     /**
      * Root node constructor
@@ -20,6 +19,7 @@ public class TreeDictionary {
     public TreeDictionary()
     {
         children = new TreeDictionary[8];
+        words = new HashSet<>();
         isLeaf = true;
         isWord = false;
     }
@@ -34,15 +34,14 @@ public class TreeDictionary {
     }
 
     public TreeDictionary(String path){
-        children = new TreeDictionary[8];
-        isLeaf = true;
-        isWord = false;
+        this();
+        this.character = character;
 
         try( Scanner in = new Scanner( new File(path) ) ){
 
             while ( in.hasNextLine() ) {
                 String word = in.nextLine();
-                addWord(word);
+                addWord(word, word);
             }
 
         } catch(IOException e){
@@ -54,6 +53,9 @@ public class TreeDictionary {
 
     /*********************************************************************/
 
+    public Set<String> getWords(){
+        return this.words;
+    }
     /**
      *
      * @param c
@@ -74,7 +76,7 @@ public class TreeDictionary {
      * recursive calls will be made with partial words.
      * @param word the word to add
      */
-    public void addWord(String word)
+    public void addWord(String word, String nodeWord)
     {
         isLeaf = false;
         int pos = convertToArrayVal(word.charAt(0));
@@ -83,9 +85,9 @@ public class TreeDictionary {
             children[pos] = new TreeDictionary(word.charAt(0));
             children[pos].parent = this;
         }
-
         if (word.length() > 1) {
-            children[pos].addWord(word.substring(1));
+            words.add(nodeWord);
+            children[pos].addWord(word.substring(1), nodeWord);
         } else {
             children[pos].isWord = true;
         }
@@ -103,72 +105,50 @@ public class TreeDictionary {
         return children[convertToArrayVal(c)];
     }
 
+    public Set<String> signatureToWords(String signature){
+        if(signature.length() == 1){
+            return getWords();
+        } else {
+            int pos = convertToArrayVal(signature.charAt(0));
+
+            return children[pos].signatureToWords(signature.substring(1));
+        }
+    }
+
     /**
      * Returns a List of String objects which are lower in the
      * hierarchy that this node.
      * @return
      */
-    public List getWords()
-    {
-        //Create a list to return
-        List list = new ArrayList();
+//    public List getWords()
+//    {
+//        //Create a list to return
+//        List list = new ArrayList();
+//
+//        //If this node represents a word, add it
+//        if (isWord) {
+//            list.add(toString());
+//        }
+//
+//        //If any children
+//        if (!isLeaf)
+//        {
+//            //Add any words belonging to any children
+//            for (int i=0; i<children.length; i++) {
+//                if (children[i] != null) {
+//                    list.addAll(children[i].getWords());
+//
+//                }
+//
+//            }
+//
+//        }
+//
+//        return list;
+//
+//    }
 
-        //If this node represents a word, add it
-        if (isWord) {
-            list.add(toString());
-        }
 
-        //If any children
-        if (!isLeaf)
-        {
-            //Add any words belonging to any children
-            for (int i=0; i<children.length; i++) {
-                if (children[i] != null) {
-                    list.addAll(children[i].getWords());
-
-                }
-
-            }
-
-        }
-
-        return list;
-
-    }
-
-
-
-    /**
-
-     * Gets the String that this node represents.
-
-     * For example, if this node represents the character t, whose parent
-
-     * represents the charater a, whose parent represents the character
-
-     * c, then the String would be "cat".
-
-     * @return
-
-     */
-
-    public String toString()
-
-    {
-
-        if (parent == null) {
-
-            return "";
-
-        }
-
-        else  {
-
-            return parent.toString() + new String(new char[] {character});
-
-        }
-
-    }
 
 }
 
