@@ -6,6 +6,7 @@ import java.util.*;
 
 public class TreeDictionary {
 
+    private boolean root;
     private TreeDictionary parent;
     private TreeDictionary[] children;
     private boolean isLeaf;
@@ -20,22 +21,16 @@ public class TreeDictionary {
     {
         children = new TreeDictionary[8];
         words = new HashSet<>();
-        isLeaf = true;
-        isWord = false;
-    }
-
-    /**
-     * Constructor for child node.
-     */
-    public TreeDictionary(char character)
-    {
-        this();
         this.character = character;
     }
+
+
 
     public TreeDictionary(String path){
-        this();
-        this.character = character;
+        children = new TreeDictionary[8];
+        isLeaf = true;
+        isWord = false;
+        root = true;
 
         try( Scanner in = new Scanner( new File(path) ) ){
 
@@ -77,30 +72,23 @@ public class TreeDictionary {
      * recursive calls will be made with partial words.
      * @param word the word to add
      */
-    public void addWord(String word, String nodeWord)
-    {
-        isLeaf = false;
+    public void addWord(String word, String nodeWord) {
+        if(word.length() == 0 ){
+            return;
+        }
         int pos = convertToArrayVal(word.charAt(0));
         if (children[pos] == null) {
-            children[pos] = new TreeDictionary(word.charAt(0));
+            children[pos] = new TreeDictionary();
             children[pos].parent = this;
-            words.add(nodeWord);
-
-
         }
-        if (word.length() > 1) {
-
+        if (!root) {
             words.add(nodeWord);
-            children[pos].addWord(word.substring(1), nodeWord);
-        } else {
-            words.add(nodeWord);
-
-            children[pos].addWord(word, nodeWord);
         }
-        words.add(nodeWord);
 
-        System.out.println(pos);
-        System.out.println(nodeWord);
+//        System.out.println(pos);
+//        System.out.println(nodeWord);
+
+        children[pos].addWord(word.substring(1), nodeWord);
 
 
 
@@ -125,8 +113,8 @@ public class TreeDictionary {
             return getWords();
         } else {
             int pos = (signature.charAt(0)-'0') - 2;
-            //System.out.println("position: " + pos);
-            //System.out.println(getWords());
+            System.out.println("position: " + pos);
+            System.out.println(getWords());
             return children[pos].signatureToWords(signature.substring(1));
         }
 
