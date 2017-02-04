@@ -1,57 +1,64 @@
 package predictive;
+import java.math.BigInteger;
 
-import java.util.Comparator;
-
-/**
- *
- */
 public class WordSig implements Comparable<WordSig> {
 
     private String words;
     private String signature;
 
     /**
+     * Getter for words field variable
      *
-     * @return
+     * @return words field variable.
      */
-    public String getWords() {
+    public String getWords(){
         return words;
     }
 
     /**
+     * Getter for signature field variable
      *
-     * @return
+     * @return signature field variable.
      */
-    public String getSignature() {
+    public String getSignature(){
+
         return signature;
     }
 
     /**
+     * Basic constructor to initialise the field variables.
      *
-     * @param words
-     * @param signature
+     * @param words represents the words to be stored in the List
+     * @param signature represents the signature that corresponds to the word in the List
      */
     public WordSig(String words, String signature){
+
         this.words = words;
         this.signature = signature;
     }
 
     @Override
     /**
-     *
+     * Overriding the compareTo method to order the list by the signature field variable.
      */
     public int compareTo(WordSig ws) {
 
-//        long sig = Long.parseLong(signature);
-//        long otherSig = Long.parseLong(ws.signature);
-//
-//        if(sig < otherSig){
-//            return -1;
-//        } else if (sig > otherSig){
-//            return 1;
-//        } else {
-//            return 0;
-//        }
+        /*
+         * This was my initial attempt at compare to, it organised the list by signature more accurately
+         * but was much slower.
+         *
+         * BigInteger sig = new BigInteger(signature);
+         * BigInteger otherSig = new BigInteger(ws.signature);
+         *
+         * if(sig < otherSig){
+         *    return -1;
+         * } else if (sig > otherSig){
+         *    return 1;
+         * } else {
+         *    return 0;
+         * }
+         *
+         */
 
         return this.getSignature().compareTo(ws.getSignature());
     }

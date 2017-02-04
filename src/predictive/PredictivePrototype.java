@@ -50,7 +50,9 @@ public class PredictivePrototype {
     }
 
     /**
-     * Answer 1.2) Reading the dictionary from a file is inefficient because
+     * Answer 1.2) Reading the dictionary from a file is inefficient because it cannot be searched as effectively
+     * as a data structure is able to do. Also each time a signature is requested the file has to be opened and looped.
+     * A data structure should only need to do this once.
      * ---------------------------------------------------------------------------------
      * signatureToWords accepts a String containing numbers as a parameter representing a signature to be matched to
      * a word in the dictionary file ( e.g. if a number in the string is 2 it will be matched to "abc" ).
@@ -82,6 +84,7 @@ public class PredictivePrototype {
 
             // while there is a next line
             while ( in.hasNextLine() ) {
+
                 // check if current word is valid
                 if(!isValidWord(word = in.nextLine())) {
                     continue;

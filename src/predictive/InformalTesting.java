@@ -10,21 +10,21 @@ public class InformalTesting {
 
     public static void main(String[] args) {
 
-//        ListDictionary ld1 = new ListDictionary("words");
+//        ListDictionary ld1 = new ListDictionary("testWords");
 //        System.out.println(ld1);
-//        System.out.println(ld1.signatureToWords("1"));
+//        System.out.println(ld1.signatureToWords("4663"));
 
 //        MapDictionary md1 = new MapDictionary("testWords");
 //        System.out.println(md1.signatureToWords("4663"));
 
-//        TreeDictionary td = new TreeDictionary("testWords");
-////        System.out.println(td.getWords());
-////        System.out.println(td.getNode('h').getWords());
-//        System.out.println(td.signatureToWords("4663"));
+        TreeDictionary td = new TreeDictionary("words");
+//        System.out.println(td.getWords());
+//        System.out.println(td.getNode('h').getWords());
+        System.out.println(td.signatureToWords("4663"));
 
-//        Trie tr = new Trie("testWords");
+//        TrieNode tn = new TrieNode("testWords");
 //
-//        System.out.println(tr.getWords("home"));
+//        System.out.println(tn.getNode('a').getNode('b').getWords());
 
 
 

@@ -45,7 +45,7 @@ public class MapDictionary implements Dictionary {
     public Set<String> signatureToWords(String signature) {
 
         Set<String> results = new HashSet<>();
-        mapDictionary.  forEach((s, v) -> results.addAll(v));
+        //mapDictionary.  forEach((s, v) -> results.addAll(v));
 
         for (Map.Entry<String, Set<String>> key : mapDictionary.entrySet()) {
             if(key.getKey().equals(signature)){
