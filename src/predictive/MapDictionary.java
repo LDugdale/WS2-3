@@ -4,30 +4,40 @@ import javafx.scene.control.Tab;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by mnt_x on 01/02/2017.
  */
 public class MapDictionary implements Dictionary {
 
-    private String path;
-    private Map <String, Set<String>> mapDictionary;
+    private Map <String, Set<String>> mapDictionary; // Stores all the contents of the dictionary file
 
     /**
+     * Constructor for the ListDictionary class.
      *
-     * @param path
+     * This constructor accepts a String representing the path to the dictionary file. When the class is instantiated
+     * all the valid words ( words only containing letters of the alphabet ) in the file are added to a Map.
+     *
+     * @param path A string representing the path to the required dictionary file.
      */
     public MapDictionary(String path){
 
-        this.path = path;
         mapDictionary = new TreeMap<>();
+        String word;
 
+        // read in the file -- scanner is inside "try with resources" as it explicitly closes
         try( Scanner in = new Scanner( new File(path) ) ){
 
+            // while there is a next line
             while ( in.hasNextLine() ) {
 
-                String word = in.nextLine();
-                mapDictionary.computeIfAbsent(PredictivePrototype.wordToSignature(word),k -> new HashSet<String>()).add(word);
+                // check if current word is valid before adding
+                if (isValidWord(word = in.nextLine())){
+                    word = word.toLowerCase();
+                    mapDictionary.computeIfAbsent(PredictivePrototype.wordToSignature(word),k -> new HashSet<String>()).add(word);
+                }
             }
 
         } catch(IOException e){
@@ -36,30 +46,58 @@ public class MapDictionary implements Dictionary {
         }
     }
 
-
-
     @Override
     /**
+     * signatureToWords accepts a String containing numbers as a parameter representing a signature to be matched to
+     * a word in the dictionary LinkedList ( e.g. if a number in the string is 2 it will be matched to "abc" ).
+     * A set of all the Strings that are matched to the signature are returned.
      *
+     * @param signature String of numbers representing the numbers on a keypad used for a t9 texting system
+     * @return Set of Strings containing the matched words from the "words" file in the directory.
      */
     public Set<String> signatureToWords(String signature) {
 
         Set<String> results = new HashSet<>();
-        //mapDictionary.  forEach((s, v) -> results.addAll(v));
 
+        // look through the map and add to the Set
         for (Map.Entry<String, Set<String>> key : mapDictionary.entrySet()) {
             if(key.getKey().equals(signature)){
                 results.addAll(key.getValue());
             }
         }
+
         return results;
     }
 
 
+    @Override
     /**
+     * To string method
+     * Created this to help with testing.
      *
+     * @return The toString method of the mapDictionary object.
      */
     public String toString() {
         return mapDictionary.toString();
+    }
+
+    /**
+     * isValidWord checks if a given String contains only chars including and between a - z and A - Z.
+     * if another char is found method returns false else it returns true.
+     *
+     * @param word String of any length.
+     * @return boolean true if all chars are including and between a - z and A - Z
+     */
+    private static boolean isValidWord(String word){
+
+        // loop through the chars in the String word
+        for (char c : word.toCharArray()) {
+            // if char is not between a-z and A-Z return false
+            if(!Character.isLetter(c)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

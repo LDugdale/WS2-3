@@ -125,10 +125,29 @@ public class PredictivePrototype {
         return true;
     }
 
+    /**
+     * isValidWord checks if a given String contains only chars including and between a - z and A - Z.
+     * if another char is found method returns false else it returns true.
+     *
+     * @param word String of any length.
+     * @return boolean true if all chars are including and between a - z and A - Z
+     */
+    private static boolean isValidSignature(String word){
+
+        // loop through the chars in the String word
+        for (char c : word.toCharArray()) {
+            // if char is not between a-z and A-Z return false
+            if(c >= '2' && c <= '9') {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public static void main(String [] args){
 
         System.out.println(signatureToWords("4663"));
-
 //        long startTime = System.nanoTime();
 //        System.out.println(wordToSignature("enterprise"));
 //        long endTime = System.nanoTime();

@@ -14,17 +14,14 @@ public class InformalTesting {
 //        System.out.println(ld1);
 //        System.out.println(ld1.signatureToWords("4663"));
 
-//        MapDictionary md1 = new MapDictionary("testWords");
-//        System.out.println(md1.signatureToWords("4663"));
+        MapDictionary md1 = new MapDictionary("words");
+        System.out.println(md1.signatureToWords("4663"));
 
-        TreeDictionary td = new TreeDictionary("words");
+//        TreeDictionary td = new TreeDictionary("words");
 //        System.out.println(td.getWords());
 //        System.out.println(td.getNode('h').getWords());
-        System.out.println(td.signatureToWords("4663"));
+//        System.out.println(td.signatureToWords("4663"));
 
-//        TrieNode tn = new TrieNode("testWords");
-//
-//        System.out.println(tn.getNode('a').getNode('b').getWords());
 
 
 

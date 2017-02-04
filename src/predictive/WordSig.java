@@ -3,8 +3,8 @@ import java.math.BigInteger;
 
 public class WordSig implements Comparable<WordSig> {
 
-    private String words;
-    private String signature;
+    private String words; // String containing letters of the alphabet including and between a and z
+    private String signature; // must be a string of integers including and between 2 and 9
 
     /**
      * Getter for words field variable

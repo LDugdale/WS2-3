@@ -13,9 +13,13 @@ public class TreeDictionary implements Dictionary {
     /**
      * Constructors
      */
-
     /**
-     * Root node constructor
+     * Root node constructor.
+     * This constructor accepts a String representing the path to the dictionary file. When the class is instantiated
+     * with this constructor (the root node constructor), the tree is created and populated with the valid words
+     * ( words only containing letters of the alphabet ) in the file.
+     *
+     * @param path A string representing the path to the required dictionary file.
      */
     public TreeDictionary(String path){
 
@@ -41,6 +45,7 @@ public class TreeDictionary implements Dictionary {
 
     /**
      * Constructor for the child nodes.
+     * After the Tree is created with the root node constructor this constructor is used to create the child nodes.
      */
     public TreeDictionary() {
 
@@ -53,8 +58,9 @@ public class TreeDictionary implements Dictionary {
      *  Getters & Setters
      */
     /**
+     * Getter for words field variable
      *
-     * @return
+     * @return words field variable.
      */
     public Set<String> getWords(){
 
@@ -62,8 +68,10 @@ public class TreeDictionary implements Dictionary {
     }
 
     /**
+     * Setter for word field variable
+     * adds a word to the words Set belonging to the current node. Does not add if current node is the main root node.
      *
-     * @param word
+     * @return words field variable.
      */
     public void addWord(String word){
 
@@ -74,27 +82,54 @@ public class TreeDictionary implements Dictionary {
     }
 
     /**
+     * Getter for the nodes in the tree
+     * Looking up the array is done using char.
      *
-     * @param c
-     * @return
+     * e.g.
+     * 'a', 'b', 'c' = 1
+     * 'd', 'e', 'f' = 2
+     *
+     * PRECONDITION:
+     * the char must be a lower case letter of the english alphabet.
+     *
+     * @param c a lowercase letter of the alphabet, used to find the position in the array.
+     * @return The corresponding TreeDictionary node out of the array.
      */
     public TreeDictionary getNode(char c){
+
+        // Throw exception if node is empty.
+        if (children[convertToArrayVal(c)] == null){
+            throw new IllegalStateException("Trying to access an empty node");
+        }
 
         return children[convertToArrayVal(c)];
     }
 
     /**
+     * Getter for the nodes in the tree
+     * Looking up the array is done using char.
      *
-     * @param n
-     * @param c
+     * e.g.
+     * 'a', 'b', 'c' = 1
+     * 'd', 'e', 'f' = 2
+     *
+     * PRECONDITION:
+     * the char must be a lower case letter of the english alphabet.
+     *
+     * @param n TreeDictionary object to add to the array of nodes.
+     * @param c a lowercase letter of the alphabet, used to find the position in the array.
      */
     public void setNode(TreeDictionary n, char c){
+
+        if (children[convertToArrayVal(c)] != null) {
+            throw new IllegalStateException("Trying to set a node that already exists");
+        }
 
         this.children[convertToArrayVal(c)] = n;
     }
 
     /**
-     *  Instance methods
+     *  Main instance methods
      */
     /**
      * Method continues until word length is 0
@@ -128,12 +163,22 @@ public class TreeDictionary implements Dictionary {
         getNode(c).addToTree(word.substring(1), nodeWord);
     }
 
+    @Override
     /**
+     * signatureToWords accepts a String containing numbers as a parameter representing a signature to be matched to
+     * a word in the dictionary LinkedList ( e.g. if a number in the string is 2 it will be matched to "abc" ).
+     * A set of all the Strings that are matched to the signature are returned.
      *
-     * @param signature
-     * @return
+     * @param signature String of numbers representing the numbers on a keypad used for a t9 texting system
+     * @return Set of Strings containing the matched words from the "words" file in the directory.
      */
     public Set<String> signatureToWords(String signature){
+
+        // check if signature contains only the accepted characters ( 2 <= c => 9 )
+        if(!isValidSignature(signature)){
+
+            throw new IllegalArgumentException("The range of characters in the signature must be 2 <= c => 9 ");
+        }
 
         int length = signature.length();
         Set<String> results = new HashSet<String>();
@@ -152,7 +197,9 @@ public class TreeDictionary implements Dictionary {
      * Helper methods
      */
     /**
-     * Recursive method to fetch all the Set of Strings from a particular node the words in the set are uncropped.
+     * Recursive method to fetch the Set of Strings from a particular node, the words in the set are uncropped.
+     * getFullWords accepts a String of numbers
+     * Method continues until signature length is 0.
      *
      * @param signature
      * @return
@@ -171,7 +218,8 @@ public class TreeDictionary implements Dictionary {
     }
 
     /**
-     *
+     * convertToArrayVal is used for converting a character ( including and between a - z and A - Z) to its
+     * corresponding keypad value. Used for fetching and setting nodes in the array.
      * @param c
      * @return
      */
@@ -189,6 +237,13 @@ public class TreeDictionary implements Dictionary {
         }
     }
 
+    /**
+     * isValidWord checks if a given String contains only chars including and between a - z and A - Z.
+     * if another char is found method returns false else it returns true.
+     *
+     * @param word String of any length or type
+     * @return boolean true if all chars are including and between a - z and A - Z
+     */
     private boolean isValidWord(String word){
 
         // loop through the chars in the String word
@@ -201,6 +256,26 @@ public class TreeDictionary implements Dictionary {
 
         // passed all the checks return true
         return true;
+    }
+
+    /**
+     * isValidWord checks if a given String contains only chars including and between a - z and A - Z.
+     * if another char is found method returns false else it returns true.
+     *
+     * @param word String of any length.
+     * @return boolean true if all chars are including and between a - z and A - Z
+     */
+    private static boolean isValidSignature(String word){
+
+        // loop through the chars in the String word
+        for (char c : word.toCharArray()) {
+            // if char is not between a-z and A-Z return false
+            if(c >= '2' && c <= '9') {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
 

@@ -8,7 +8,7 @@ import java.util.*;
  */
 public class ListDictionary implements Dictionary {
 
-    private List<WordSig> listDictionary;
+    private List<WordSig> listDictionary; // Stores all the contents of the dictionary file
 
     /**
      * Constructor for the ListDictionary class.
