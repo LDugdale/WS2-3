@@ -56,6 +56,7 @@ public class TreeDictionary {
     public Set<String> getWords(){
         return this.words;
     }
+
     /**
      *
      * @param c
@@ -80,17 +81,29 @@ public class TreeDictionary {
     {
         isLeaf = false;
         int pos = convertToArrayVal(word.charAt(0));
-
         if (children[pos] == null) {
             children[pos] = new TreeDictionary(word.charAt(0));
             children[pos].parent = this;
+            words.add(nodeWord);
+
+
         }
         if (word.length() > 1) {
+
             words.add(nodeWord);
             children[pos].addWord(word.substring(1), nodeWord);
         } else {
-            children[pos].isWord = true;
+            words.add(nodeWord);
+
+            children[pos].addWord(word, nodeWord);
         }
+        words.add(nodeWord);
+
+        System.out.println(pos);
+        System.out.println(nodeWord);
+
+
+
     }
 
     /**
@@ -106,124 +119,18 @@ public class TreeDictionary {
     }
 
     public Set<String> signatureToWords(String signature){
-        if(signature.length() == 1){
+        //System.out.println("length:   " + signature.length());
+        if(signature.length() == 0){
+
             return getWords();
         } else {
-            int pos = convertToArrayVal(signature.charAt(0));
-
+            int pos = (signature.charAt(0)-'0') - 2;
+            //System.out.println("position: " + pos);
+            //System.out.println(getWords());
             return children[pos].signatureToWords(signature.substring(1));
         }
+
     }
-
-    /**
-     * Returns a List of String objects which are lower in the
-     * hierarchy that this node.
-     * @return
-     */
-//    public List getWords()
-//    {
-//        //Create a list to return
-//        List list = new ArrayList();
-//
-//        //If this node represents a word, add it
-//        if (isWord) {
-//            list.add(toString());
-//        }
-//
-//        //If any children
-//        if (!isLeaf)
-//        {
-//            //Add any words belonging to any children
-//            for (int i=0; i<children.length; i++) {
-//                if (children[i] != null) {
-//                    list.addAll(children[i].getWords());
-//
-//                }
-//
-//            }
-//
-//        }
-//
-//        return list;
-//
-//    }
-
-
 
 }
 
-///**
-// *
-// */
-//public class Tree {
-//
-//    private  boolean empty;
-//    private List<String> values = new LinkedList<>();
-//    private Tree[] children = new Tree[8];
-//
-//    public Tree(){
-//        this.empty = true;
-//
-//    }
-//
-//    public Tree(boolean test) {
-//        this.empty = test;
-//        Arrays.fill(this.children, new Tree());
-//    }
-//
-//    /***************************************************************/
-//
-
-//
-//    public Tree addChild(char c){
-//
-//        int pos = convertToArrayVal(c);
-//        return this.children[pos] = new Tree();
-//    }
-//
-//    public Tree getChild(char c){
-//
-//        int pos = convertToArrayVal(c);
-//        return this.children[pos];
-//    }
-//
-//    public boolean childIsEmpty(char c){
-//        int pos = convertToArrayVal(c);
-//        return(this.children[pos] == null);
-//    }
-//
-//    public void setValues(String word){
-//        values.add(word);
-//    }
-//
-//    public List<String> getValues(String word){
-//        return this.values;
-//    }
-//
-//    public boolean isEmpty(){
-//        return this.empty;
-//    }
-//
-//    /*****************************************************************************/
-//
-//    public String addWord(Tree a, String word, String wordIterator){
-//
-//        if(word.length() == 0){
-//
-//            a.setValues(word);
-//            return wordIterator;
-//        } else if (this.children.length == 0){
-//
-//            a.setValues(word);
-//            return addWord(a.addChild(wordIterator.charAt(0)), word, wordIterator.substring(1));
-//        } else {
-//
-//           // a.setValues(word);
-//            return addWord(a.getChild(wordIterator.charAt(0)), word, wordIterator.substring(1));
-//        }
-//
-//
-//    }
-//
-//
-//}
