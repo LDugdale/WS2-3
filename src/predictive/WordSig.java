@@ -1,6 +1,9 @@
 package predictive;
 import java.math.BigInteger;
 
+/**
+ * @Author Laurie Dugdale
+ */
 public class WordSig implements Comparable<WordSig> {
 
     private String words; // String containing letters of the alphabet including and between a and z
@@ -50,9 +53,9 @@ public class WordSig implements Comparable<WordSig> {
          * BigInteger sig = new BigInteger(signature);
          * BigInteger otherSig = new BigInteger(ws.signature);
          *
-         * if(sig < otherSig){
+         * if(sig.compareTo(otherSig) < 0){
          *    return -1;
-         * } else if (sig > otherSig){
+         * } else if (sig.compareTo(otherSig) > 0){
          *    return 1;
          * } else {
          *    return 0;

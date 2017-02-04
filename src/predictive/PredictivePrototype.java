@@ -5,6 +5,8 @@ import java.util.*;
 import java.util.stream.Stream;
 
 /**
+ * 1 Prototypes and design (25%)
+
  * @Author Laurie Dugdale
  */
 public class PredictivePrototype {

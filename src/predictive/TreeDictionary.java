@@ -1,9 +1,12 @@
 package predictive;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
-
+/**
+ * 4 Prefix-matching (25%)
+ *
+ * @Author Laurie Dugdale
+ */
 public class TreeDictionary implements Dictionary {
 
     private boolean root; // True only the current node is the main root node at the base of the whole tree.
@@ -25,13 +28,15 @@ public class TreeDictionary implements Dictionary {
 
         children = new TreeDictionary[8];
         root = true;
+        String word;
 
+        // read in the file -- scanner is inside "try with resources" as it explicitly closes
         try( Scanner in = new Scanner( new File(path) ) ){
 
+            // while there is a next line
             while ( in.hasNextLine() ) {
 
-                String word = in.nextLine();
-                if(isValidWord(word)) {
+                if(isValidWord(word = in.nextLine())) {
                     word = word.toLowerCase();
                     addToTree(word, word);
                 }
@@ -132,10 +137,17 @@ public class TreeDictionary implements Dictionary {
      *  Main instance methods
      */
     /**
-     * Method continues until word length is 0
+     * addToTree is used for populating the Tree with words.
+     * Method continues until word length is 0.
      *
-     * @param word
-     * @param nodeWord
+     * PRECONDITION:
+     * As this method is used directly by the root constructor there are no checks within this method to see if the
+     * word is valid.
+     * e.g. only chars including and between a - z and A - Z.
+     * Method assumes word is valid word.
+     *
+     * @param word Represents the word to be added. Used for iterating through the recursive method. Should be the same String as nodeWord.
+     * @param nodeWord Represents the word to be added. Used for adding the word to the set of each node passed through. Should be the same String as word.
      */
     public void addToTree(String word, String nodeWord){
 
@@ -201,10 +213,14 @@ public class TreeDictionary implements Dictionary {
      * getFullWords accepts a String of numbers
      * Method continues until signature length is 0.
      *
+     * PRECONDITION:
+     * Method assumes the signature is a valid signature.
+     * e.g. characters only numeric characters 2 <= c => 9.
+     *
      * @param signature
      * @return
      */
-    private Set<String> getFullWords(String signature){
+    public Set<String> getFullWords(String signature){
 
         if(signature.length() == 0){
 
@@ -220,6 +236,7 @@ public class TreeDictionary implements Dictionary {
     /**
      * convertToArrayVal is used for converting a character ( including and between a - z and A - Z) to its
      * corresponding keypad value. Used for fetching and setting nodes in the array.
+     *
      * @param c
      * @return
      */

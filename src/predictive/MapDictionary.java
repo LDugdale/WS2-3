@@ -8,7 +8,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * Created by mnt_x on 01/02/2017.
+ * 3 More efficiency (25%)
+ *
+ * @Author Laurie Dugdale
  */
 public class MapDictionary implements Dictionary {
 

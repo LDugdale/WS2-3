@@ -10,12 +10,12 @@ public class InformalTesting {
 
     public static void main(String[] args) {
 
-//        ListDictionary ld1 = new ListDictionary("testWords");
-//        System.out.println(ld1);
-//        System.out.println(ld1.signatureToWords("4663"));
+        ListDictionary ld1 = new ListDictionary("testWords");
+        System.out.println(ld1);
+        System.out.println(ld1.signatureToWords("4663"));
 
-        MapDictionary md1 = new MapDictionary("words");
-        System.out.println(md1.signatureToWords("4663"));
+//        MapDictionary md1 = new MapDictionary("words");
+//        System.out.println(md1.signatureToWords("4663"));
 
 //        TreeDictionary td = new TreeDictionary("words");
 //        System.out.println(td.getWords());

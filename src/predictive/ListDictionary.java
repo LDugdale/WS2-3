@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * Created by mnt_x on 01/02/2017.
+ * 2 Storing and searching a dictionary(20%)
+ *
+ * @Author Laurie Dugdale
  */
 public class ListDictionary implements Dictionary {
 
