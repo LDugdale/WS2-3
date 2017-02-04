@@ -78,7 +78,8 @@ public class ListDictionary implements Dictionary {
         // check if signature contains only the accepted characters ( 2 <= c => 9 )
         if(!isValidSignature(signature)){
 
-            throw new IllegalArgumentException("The range of characters in the signature must be 2 <= c => 9 ");
+            //throw new IllegalArgumentException("The range of characters in the signature must be 2 <= c => 9 ");
+            return new HashSet<String>();
         }
 
         // creating the hashset to return

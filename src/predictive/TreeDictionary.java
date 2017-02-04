@@ -103,9 +103,9 @@ public class TreeDictionary implements Dictionary {
     public TreeDictionary getNode(char c){
 
         // Throw exception if node is empty.
-        if (children[convertToArrayVal(c)] == null){
-            throw new IllegalStateException("Trying to access an empty node");
-        }
+//        if (children[convertToArrayVal(c)] == null){
+//            throw new IllegalStateException("Trying to access an empty node");
+//        }
 
         return children[convertToArrayVal(c)];
     }
@@ -127,6 +127,7 @@ public class TreeDictionary implements Dictionary {
     public void setNode(TreeDictionary n, char c){
 
         if (children[convertToArrayVal(c)] != null) {
+
             throw new IllegalStateException("Trying to set a node that already exists");
         }
 
@@ -189,7 +190,8 @@ public class TreeDictionary implements Dictionary {
         // check if signature contains only the accepted characters ( 2 <= c => 9 )
         if(!isValidSignature(signature)){
 
-            throw new IllegalArgumentException("The range of characters in the signature must be 2 <= c => 9 ");
+            return new HashSet<>();
+            //throw new IllegalArgumentException("The range of characters in the signature must be 2 <= c => 9 ");
         }
 
         int length = signature.length();

@@ -88,9 +88,10 @@ public class PredictivePrototype {
             while ( in.hasNextLine() ) {
 
                 // check if current word is valid
-                if(!isValidWord(word = in.nextLine())) {
+                if(!isValidWord(word = in.nextLine().toLowerCase())) {
                     continue;
                 }
+
 
                 // assign in.nextLine to a variable so we only change lines once
                 // if the current line matches the regex expression add it to the HashSet results
