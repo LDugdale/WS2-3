@@ -26,8 +26,8 @@ public class TreeDictionary implements Dictionary {
      */
     public TreeDictionary(String path){
 
-        children = new TreeDictionary[8];
-        root = true;
+        this.children = new TreeDictionary[8];
+        this.root = true;
         String word;
 
         // read in the file -- scanner is inside "try with resources" as it explicitly closes
@@ -54,7 +54,7 @@ public class TreeDictionary implements Dictionary {
      */
     public TreeDictionary() {
 
-        children = new TreeDictionary[8];
+        this.children = new TreeDictionary[8];
         this.root = false;
         this.words = new HashSet<>();
     }
