@@ -36,7 +36,7 @@ public class MapDictionary implements Dictionary {
             while ( in.hasNextLine() ) {
 
                 // check if current word is valid before adding
-                if (isValidWord(word = in.nextLine())){
+                if (PredictivePrototype.isValidWord(word = in.nextLine())){
                     word = word.toLowerCase();
                     mapDictionary.computeIfAbsent(PredictivePrototype.wordToSignature(word),k -> new HashSet<String>()).add(word);
                 }
@@ -63,7 +63,9 @@ public class MapDictionary implements Dictionary {
 
         // look through the map and add to the Set
         for (Map.Entry<String, Set<String>> key : mapDictionary.entrySet()) {
+            // if the current key matches signature.
             if(key.getKey().equals(signature)){
+                // add all the values under that key to the results set
                 results.addAll(key.getValue());
             }
         }
@@ -83,23 +85,4 @@ public class MapDictionary implements Dictionary {
         return mapDictionary.toString();
     }
 
-    /**
-     * isValidWord checks if a given String contains only chars including and between a - z and A - Z.
-     * if another char is found method returns false else it returns true.
-     *
-     * @param word String of any length.
-     * @return boolean true if all chars are including and between a - z and A - Z
-     */
-    private static boolean isValidWord(String word){
-
-        // loop through the chars in the String word
-        for (char c : word.toCharArray()) {
-            // if char is not between a-z and A-Z return false
-            if(!Character.isLetter(c)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
 }

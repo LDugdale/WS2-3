@@ -33,7 +33,7 @@ public class ListDictionary implements Dictionary {
             while ( in.hasNextLine() ) {
 
                 // check if current word is valid
-                if(!isValidWord(word = in.nextLine())) {
+                if(!PredictivePrototype.isValidWord(word = in.nextLine())) {
                     continue;
                 }
                 word = word.toLowerCase();
@@ -75,76 +75,35 @@ public class ListDictionary implements Dictionary {
      */
     public Set<String> signatureToWords(String signature) {
 
-        // check if signature contains only the accepted characters ( 2 <= c => 9 )
-        if(!isValidSignature(signature)){
-
-            //throw new IllegalArgumentException("The range of characters in the signature must be 2 <= c => 9 ");
-            return new HashSet<String>();
-        }
-
         // creating the hashset to return
         Set<String> words = new HashSet<>();
+
         // finding the position of potential word(s) using binary search
         int pos = Collections.binarySearch(listDictionary, new WordSig(null, signature));
-        // adding the initial result to the HashSet
-         words.add(listDictionary.get(pos).getWords());
 
-        // setting counter to the original position + 1 to check for extra elements with the same signature above
-        int counter = pos + 1;
-        while(counter < listDictionary.size() -1 && listDictionary.get(counter).getSignature().equals(signature)){
+        // if position is found
+        if (pos >= 0 ) {
 
-            words.add(listDictionary.get(counter).getWords());
-            counter++;
-        }
+            // adding the initial result to the HashSet
+            words.add(listDictionary.get(pos).getWords());
 
-        // setting counter to the original position - 1 to check for extra elements with the same signature below
-        counter = pos - 1;
-        while (counter >= 0 && listDictionary.get(counter).getSignature().equals(signature)){
+            // setting counter to the original position + 1 to check for extra elements with the same signature above
+            int counter = pos + 1;
+            while (counter < listDictionary.size() - 1 && listDictionary.get(counter).getSignature().equals(signature)) {
 
-            words.add(listDictionary.get(counter).getWords());
-            counter--;
+                words.add(listDictionary.get(counter).getWords());
+                counter++;
+            }
+
+            // setting counter to the original position - 1 to check for extra elements with the same signature below
+            counter = pos - 1;
+            while (counter >= 0 && listDictionary.get(counter).getSignature().equals(signature)) {
+
+                words.add(listDictionary.get(counter).getWords());
+                counter--;
+            }
         }
 
         return words;
-    }
-
-    /**
-     * isValidWord checks if a given String contains only chars including and between a - z and A - Z.
-     * if another char is found method returns false else it returns true.
-     *
-     * @param word String of any length.
-     * @return boolean true if all chars are including and between a - z and A - Z
-     */
-    private static boolean isValidWord(String word){
-
-        // loop through the chars in the String word
-        for (char c : word.toCharArray()) {
-            // if char is not between a-z and A-Z return false
-            if(!Character.isLetter(c)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    /**
-     * isValidWord checks if a given String contains only chars including and between a - z and A - Z.
-     * if another char is found method returns false else it returns true.
-     *
-     * @param word String of any length.
-     * @return boolean true if all chars are including and between a - z and A - Z
-     */
-    private static boolean isValidSignature(String word){
-
-        // loop through the chars in the String word
-        for (char c : word.toCharArray()) {
-            // if char is not between a-z and A-Z return false
-            if(c >= '2' && c <= '9') {
-                return true;
-            }
-        }
-
-        return false;
     }
 }

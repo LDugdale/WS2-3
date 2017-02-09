@@ -115,7 +115,7 @@ public class PredictivePrototype {
      * @param word String of any length or type
      * @return boolean true if all chars are including and between a - z and A - Z
      */
-    private static boolean isValidWord(String word){
+    public static boolean isValidWord(String word){
 
         // loop through the chars in the String word
         for (char c : word.toCharArray()) {
@@ -150,7 +150,7 @@ public class PredictivePrototype {
 
     public static void main(String [] args){
 
-        System.out.println(signatureToWords("4663"));
+        System.out.println(signatureToWords("65876"));
 //        long startTime = System.nanoTime();
 //        System.out.println(wordToSignature("enterprise"));
 //        long endTime = System.nanoTime();

@@ -36,7 +36,7 @@ public class TreeDictionary implements Dictionary {
             // while there is a next line
             while ( in.hasNextLine() ) {
 
-                if(isValidWord(word = in.nextLine())) {
+                if(PredictivePrototype.isValidWord(word = in.nextLine())) {
                     word = word.toLowerCase();
                     addToTree(word, word);
                 }
@@ -102,11 +102,6 @@ public class TreeDictionary implements Dictionary {
      */
     public TreeDictionary getNode(char c){
 
-        // Throw exception if node is empty.
-//        if (children[convertToArrayVal(c)] == null){
-//            throw new IllegalStateException("Trying to access an empty node");
-//        }
-
         return children[convertToArrayVal(c)];
     }
 
@@ -126,6 +121,7 @@ public class TreeDictionary implements Dictionary {
      */
     public void setNode(TreeDictionary n, char c){
 
+        // check if trying to create a node that already exists.
         if (children[convertToArrayVal(c)] != null) {
 
             throw new IllegalStateException("Trying to set a node that already exists");
@@ -156,7 +152,6 @@ public class TreeDictionary implements Dictionary {
         if(word.length() == 0 ){
             return;
         }
-
         // Assigning to prevent calling the same method multiple times.
         char c = word.charAt(0);
 
@@ -186,13 +181,6 @@ public class TreeDictionary implements Dictionary {
      * @return Set of Strings containing the matched words from the "words" file in the directory.
      */
     public Set<String> signatureToWords(String signature){
-
-        // check if signature contains only the accepted characters ( 2 <= c => 9 )
-        if(!isValidSignature(signature)){
-
-            return new HashSet<>();
-            //throw new IllegalArgumentException("The range of characters in the signature must be 2 <= c => 9 ");
-        }
 
         int length = signature.length();
         Set<String> results = new HashSet<String>();
@@ -224,13 +212,18 @@ public class TreeDictionary implements Dictionary {
      */
     public Set<String> getFullWords(String signature){
 
-        if(signature.length() == 0){
+
+        // base case if the length of the word is 0 we're at the right node and can return the Set of words
+        if(signature.length() == 0) {
 
             return getWords();
+        } else if (children[(signature.charAt(0)-'0') - 2] == null){
+
+            return new HashSet<String>();
         } else {
 
-            int pos = (signature.charAt(0)-'0') - 2;
-            return children[pos].getFullWords(signature.substring(1));
+            // get array position and recursively move through the tree.
+            return children[(signature.charAt(0)-'0') - 2].getFullWords(signature.substring(1));
         }
 
     }
@@ -254,47 +247,6 @@ public class TreeDictionary implements Dictionary {
             // Sum to map the letters to the 8 index array;
             return ((c - 'a') - ((c - 'a') % 3)) / 3;
         }
-    }
-
-    /**
-     * isValidWord checks if a given String contains only chars including and between a - z and A - Z.
-     * if another char is found method returns false else it returns true.
-     *
-     * @param word String of any length or type
-     * @return boolean true if all chars are including and between a - z and A - Z
-     */
-    private boolean isValidWord(String word){
-
-        // loop through the chars in the String word
-        for (char c : word.toCharArray()) {
-            // if char is not between a-z and A-Z return false
-            if(!Character.isLetter(c)) {
-                return false;
-            }
-        }
-
-        // passed all the checks return true
-        return true;
-    }
-
-    /**
-     * isValidWord checks if a given String contains only chars including and between a - z and A - Z.
-     * if another char is found method returns false else it returns true.
-     *
-     * @param word String of any length.
-     * @return boolean true if all chars are including and between a - z and A - Z
-     */
-    private static boolean isValidSignature(String word){
-
-        // loop through the chars in the String word
-        for (char c : word.toCharArray()) {
-            // if char is not between a-z and A-Z return false
-            if(c >= '2' && c <= '9') {
-                return true;
-            }
-        }
-
-        return false;
     }
 }
 
