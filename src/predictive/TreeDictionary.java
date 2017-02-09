@@ -182,13 +182,21 @@ public class TreeDictionary implements Dictionary {
      */
     public Set<String> signatureToWords(String signature){
 
+        // create local variables
         int length = signature.length();
         Set<String> results = new HashSet<String>();
 
+        // check if signature is not empty
+        if(length == 0){
+            return new HashSet<>();
+        }
+
+        // loop through all the words returned by getFullWords method
         for (String s: getFullWords(signature)) {
 
-            String test = s.substring(0, length);
-            results.add(test);
+            // cut down each word and add it to the set
+            String word = s.substring(0, length);
+            results.add(word);
         }
 
         return results;
@@ -212,20 +220,23 @@ public class TreeDictionary implements Dictionary {
      */
     public Set<String> getFullWords(String signature){
 
-
-        // base case if the length of the word is 0 we're at the right node and can return the Set of words
-        if(signature.length() == 0) {
+        if(signature.length() == 0){
 
             return getWords();
-        } else if (children[(signature.charAt(0)-'0') - 2] == null){
-
-            return new HashSet<String>();
         } else {
 
-            // get array position and recursively move through the tree.
-            return children[(signature.charAt(0)-'0') - 2].getFullWords(signature.substring(1));
-        }
+            int pos = (signature.charAt(0)-'0') - 2;
 
+            // check signature is including and between 0 and 8
+            if(pos >= 0 && 8 >= pos) {
+
+                return children[pos].getFullWords(signature.substring(1));
+            } else {
+                // end recursion and return empty set if invalid number
+                return new HashSet<String>();
+            }
+
+        }
     }
 
     /**

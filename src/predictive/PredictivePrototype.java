@@ -78,6 +78,10 @@ public class PredictivePrototype {
                 // append it with the values from the position in the String array LETTERS
                 // at the location of the current char - (char)0 - (int)2
                 regEx.append("[" + LETTERS[(c - '0') - 2] + "]");
+            } else {
+
+                // if not a valid signature return empty set
+                return new HashSet<>();
             }
         }
 
