@@ -38,7 +38,7 @@ public class MapDictionary implements Dictionary {
                 // check if current word is valid before adding
                 if (PredictivePrototype.isValidWord(word = in.nextLine())){
                     word = word.toLowerCase();
-                    mapDictionary.computeIfAbsent(PredictivePrototype.wordToSignature(word),k -> new HashSet<String>()).add(word);
+                    mapDictionary.computeIfAbsent(PredictivePrototype.wordToSignature(word),k -> new HashSet<>()).add(word);
                 }
             }
 
@@ -59,18 +59,7 @@ public class MapDictionary implements Dictionary {
      */
     public Set<String> signatureToWords(String signature) {
 
-        Set<String> results = new HashSet<>();
-
-        // look through the map and add to the Set
-        for (Map.Entry<String, Set<String>> key : mapDictionary.entrySet()) {
-            // if the current key matches signature.
-            if(key.getKey().equals(signature)){
-                // add all the values under that key to the results set
-                results.addAll(key.getValue());
-            }
-        }
-
-        return results;
+        return mapDictionary.get(signature);
     }
 
 

@@ -5,19 +5,19 @@ package predictive;
  *  ----------------------------------------------------------------------
  *  Map Dictionary time for command -
  *  time java predictive.Sigs2WordsMap 4663
- *  real    0m1.585s
+ *  real    0m1.541s
  *  ----------------------------------------------------------------------
  *  Map Dictionary time for command -
  *  time java predictive.Sigs2WordsMap 4663 876 89 4 245
- *  real    0m1.650s
+ *  real    0m1.526s
  * ----------------------------------------------------------------------
  *  Map Dictionary time for command -
  *  time java predictive.Sigs2WordsMap 4663 876 89 4 245 2345 9 8657 65 4646 46662368 885226 8852266
- *  real    0m2.047s
+ *  real    0m1.500s
  * ------------------------------------------------------------------------
  *  Map Dictionary time for command -
  *  time java predictive.Sigs2WordsMap 4663 876 89 4 245 2345 9 8657 65 4646 46662368 885226 8852266 76325 543543 97 654 2 3 5 6 7 8 546 9227 923
- *  real    0m2.631s
+ *  real    0m1.537s
  * ------------------------------------------------------------------------
  *
  *
