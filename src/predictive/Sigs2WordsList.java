@@ -2,6 +2,7 @@ package predictive;
 
 /**
  * @author Laurie Dugdale
+ *
  *  ----------------------------------------------------------------------
  *  List Dictionary time for command -
  *  time java predictive.Sigs2WordsList 4663

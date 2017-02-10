@@ -215,7 +215,7 @@ public class TreeDictionary implements Dictionary {
      * Method assumes the signature is a valid signature.
      * e.g. characters only numeric characters 2 <= c => 9.
      *
-     * @param signature
+     * @param signature String of numbers representing the numbers on a keypad used for a t9 texting system
      * @return
      */
     public Set<String> getFullWords(String signature){
@@ -228,7 +228,7 @@ public class TreeDictionary implements Dictionary {
             int pos = (signature.charAt(0)-'0') - 2;
 
             // check signature is including and between 0 and 8
-            if(pos >= 0 && 8 >= pos) {
+            if (pos >= 0 && 8 >= pos && children[pos] != null){
 
                 return children[pos].getFullWords(signature.substring(1));
             } else {

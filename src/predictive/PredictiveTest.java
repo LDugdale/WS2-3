@@ -92,8 +92,26 @@ public class PredictiveTest {
         assertEquals(expected, actual );
     }
 
+    @Test
+    public void signatureToWordsTest6(){
+
+        Set<String> actual  = pp.signatureToWords("99999999999999999999");
+        Set<String> expected  = new HashSet<>();
+
+        assertEquals(expected, actual );
+    }
+
+    @Test
+    public void signatureToWordsTest7(){
+
+        Set<String> actual  = pp.signatureToWords("!£$%^&*()_+-=]}{[~#@':;?/>.<,|¬`|\\abcdefghijklmnopqrstuvwxqzABCDEFGHIJKLMOPQRSTUVWXYZ");
+        Set<String> expected  = new HashSet<>();
+
+        assertEquals(expected, actual );
+    }
+
     /**
-     * signatureToWords Test
+     * WordsToSignature Test
      */
     @Test
     public void wordToSignatureTest1(){
@@ -121,6 +139,8 @@ public class PredictiveTest {
 
         assertEquals(expected, actual);
     }
+
+
 
     /**
      * Testing ListDictionary class
@@ -191,6 +211,24 @@ public class PredictiveTest {
         assertEquals(expected, actual );
     }
 
+    @Test
+    public void signatureToWordsTestld6(){
+
+        Set<String> actual  = ld.signatureToWords("99999999999999999999");
+        Set<String> expected  = new HashSet<>();
+
+        assertEquals(expected, actual );
+    }
+
+    @Test
+    public void signatureToWordsTestld7(){
+
+        Set<String> actual  = ld.signatureToWords("!£$%^&*()_+-=]}{[~#@':;?/>.<,|¬`|\\abcdefghijklmnopqrstuvwxqzABCDEFGHIJKLMOPQRSTUVWXYZ");
+        Set<String> expected  = new HashSet<>();
+
+        assertEquals(expected, actual );
+    }
+
     /**
      * Testing MapDictionary class
      */
@@ -255,6 +293,24 @@ public class PredictiveTest {
     public void signatureToWordsTestmd5(){
 
         Set<String> actual  = md.signatureToWords("1");
+        Set<String> expected  = new HashSet<>();
+
+        assertEquals(expected, actual );
+    }
+
+    @Test
+    public void signatureToWordsTestmd6(){
+
+        Set<String> actual  = md.signatureToWords("99999999999999999999");
+        Set<String> expected  = new HashSet<>();
+
+        assertEquals(expected, actual );
+    }
+
+    @Test
+    public void signatureToWordsTestmd7(){
+
+        Set<String> actual  = md.signatureToWords("!£$%^&*()_+-=]}{[~#@':;?/>.<,|¬`|\\abcdefghijklmnopqrstuvwxqzABCDEFGHIJKLMOPQRSTUVWXYZ");
         Set<String> expected  = new HashSet<>();
 
         assertEquals(expected, actual );
@@ -334,6 +390,24 @@ public class PredictiveTest {
     public void signatureToWordsTesttd5(){
 
         Set<String> actual  = td.signatureToWords("1");
+        Set<String> expected  = new HashSet<>();
+
+        assertEquals(expected, actual );
+    }
+
+    @Test
+    public void signatureToWordsTesttd6(){
+
+        Set<String> actual  = td.signatureToWords("99999999999999999999");
+        Set<String> expected  = new HashSet<>();
+
+        assertEquals(expected, actual );
+    }
+
+    @Test
+    public void signatureToWordsTesttd7(){
+
+        Set<String> actual  = td.signatureToWords("!£$%^&*()_+-=]}{[~#@':;?/>.<,|¬`|\\abcdefghijklmnopqrstuvwxqzABCDEFGHIJKLMOPQRSTUVWXYZ");
         Set<String> expected  = new HashSet<>();
 
         assertEquals(expected, actual );
