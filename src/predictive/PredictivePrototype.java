@@ -133,6 +133,8 @@ public class PredictivePrototype {
     }
 
     /**
+     * REDUNDANT - not used any more
+     *
      * isValidWord checks if a given String contains only chars including and between a - z and A - Z.
      * if another char is found method returns false else it returns true.
      *
