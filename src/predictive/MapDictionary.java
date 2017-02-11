@@ -1,11 +1,7 @@
 package predictive;
-import javafx.scene.control.Tab;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * 3 More efficiency (25%)
@@ -26,7 +22,7 @@ public class MapDictionary implements Dictionary {
      */
     public MapDictionary(String path){
 
-        mapDictionary = new HashMap<>();
+        mapDictionary = new TreeMap<>();
         String word;
 
         // read in the file -- scanner is inside "try with resources" as it explicitly closes

@@ -9,11 +9,11 @@ import java.util.*;
  */
 public class TreeDictionary implements Dictionary {
 
-    private boolean root; // True only the current node is the main root node at the base of the whole tree.
+    private boolean root; // True only the current node is the main root node.
     private TreeDictionary[] children; // Array of the child nodes must always be of length 8.
-    private Set<String> words; // Set containing the words for each node except the root node at the base of the whole tree
+    private Set<String> words; // Set containing the words for each node except the root node.
 
-    /**
+    /*
      * Constructors
      */
     /**
@@ -59,7 +59,7 @@ public class TreeDictionary implements Dictionary {
         this.words = new HashSet<>();
     }
 
-    /**
+    /*
      *  Getters & Setters
      */
     /**
@@ -74,7 +74,8 @@ public class TreeDictionary implements Dictionary {
 
     /**
      * Setter for word field variable
-     * adds a word to the words Set belonging to the current node. Does not add if current node is the main root node.
+     * adds a word to the words Set belonging to the current node. Does not add the word String if the current node
+     * is the main root node.
      *
      * @return words field variable.
      */
@@ -130,7 +131,7 @@ public class TreeDictionary implements Dictionary {
         this.children[convertToArrayVal(c)] = n;
     }
 
-    /**
+    /*
      *  Main instance methods
      */
     /**
@@ -203,8 +204,8 @@ public class TreeDictionary implements Dictionary {
     }
 
 
-    /**
-     * Helper methods
+    /*
+     * Helper methods - also instance
      */
     /**
      * Recursive method to fetch the Set of Strings from a particular node, the words in the set are uncropped.
