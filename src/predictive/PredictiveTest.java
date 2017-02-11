@@ -86,11 +86,12 @@ public class PredictiveTest {
     @Test
     public void signatureToWordsTest2(){
 
-        Set<String> actual  = pp.signatureToWords("8");
+        Set<String> actual  = pp.signatureToWords("9");
         Set<String> expected  = new HashSet<>();
-        expected.add("t");
-        expected.add("u");
-        expected.add("v");
+        expected.add("w");
+        expected.add("x");
+        expected.add("y");
+        expected.add("z");
 
         assertEquals(expected, actual );
     }
@@ -205,11 +206,12 @@ public class PredictiveTest {
     @Test
     public void signatureToWordsTestld2(){
 
-        Set<String> actual  = ld.signatureToWords("8");
+        Set<String> actual  = ld.signatureToWords("9");
         Set<String> expected  = new HashSet<>();
-        expected.add("t");
-        expected.add("u");
-        expected.add("v");
+        expected.add("w");
+        expected.add("x");
+        expected.add("y");
+        expected.add("z");
 
         assertEquals(expected, actual);
     }
@@ -292,11 +294,12 @@ public class PredictiveTest {
     @Test
     public void signatureToWordsTestmd2(){
 
-        Set<String> actual  = md.signatureToWords("8");
+        Set<String> actual  = md.signatureToWords("9");
         Set<String> expected  = new HashSet<>();
-        expected.add("t");
-        expected.add("u");
-        expected.add("v");
+        expected.add("w");
+        expected.add("x");
+        expected.add("y");
+        expected.add("z");
 
         assertEquals(expected, actual );
     }
@@ -389,11 +392,12 @@ public class PredictiveTest {
     @Test
     public void signatureToWordsTesttd2(){
 
-        Set<String> actual  = td.signatureToWords("8");
+        Set<String> actual  = td.signatureToWords("9");
         Set<String> expected  = new HashSet<>();
-        expected.add("t");
-        expected.add("u");
-        expected.add("v");
+        expected.add("w");
+        expected.add("x");
+        expected.add("y");
+        expected.add("z");
 
         assertEquals(expected, actual );
     }
@@ -444,6 +448,50 @@ public class PredictiveTest {
 
         assertEquals(expected, actual );
     }
+
+    @Test
+    public void signatureToWordsTesttd8(){
+
+        Set<String> actual  = new HashSet<>();
+        actual.addAll(td.signatureToWords("8276743376876377"));
+        actual.addAll(td.signatureToWords("827674337687637"));
+        actual.addAll(td.signatureToWords("82767433768763"));
+        actual.addAll(td.signatureToWords("8276743376876"));
+        actual.addAll(td.signatureToWords("827674337687"));
+        actual.addAll(td.signatureToWords("82767433768"));
+        actual.addAll(td.signatureToWords("8276743376"));
+        actual.addAll(td.signatureToWords("827674337"));
+        actual.addAll(td.signatureToWords("82767433"));
+        actual.addAll(td.signatureToWords("8276743"));
+        actual.addAll(td.signatureToWords("827674"));
+        actual.addAll(td.signatureToWords("82767"));
+        actual.addAll(td.signatureToWords("8276"));
+        actual.addAll(td.signatureToWords("827"));
+        actual.addAll(td.signatureToWords("82"));
+        actual.addAll(td.signatureToWords("8"));
+
+        Set<String> expected  = new HashSet<>();
+        expected.add("vaporiferousness");
+        expected.add("vaporiferousnes");
+        expected.add("vaporiferousne");
+        expected.add("vaporiferousn");
+        expected.add("vaporiferous");
+        expected.add("vaporiferou");
+        expected.add("vaporifero");
+        expected.add("vaporifer");
+        expected.add("vaporife");
+        expected.add("vaporif");
+        expected.add("vapori");
+        expected.add("vapor");
+        expected.add("vapo");
+        expected.add("vap");
+        expected.add("va");
+        expected.add("v");
+
+        assertTrue(actual.containsAll(expected));
+
+    }
+
 
 
 }

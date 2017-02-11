@@ -50,7 +50,7 @@ package predictive;
  * ------------------------------------------------------------------------
  *
  *  The Map dictionary class is consitantly slow than the ListDictionary class by around 0.1s no matter what the size
- *  of the argument list is. The code for the MapDictionary class is however much more readable and compact
+ *  of the argument list is. The code for the MapDictionary class is however much more readable and compact.
  *
  *  Using TreeMap is at least a further 0.1s slower for each command.
  *

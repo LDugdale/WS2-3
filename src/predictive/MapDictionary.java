@@ -13,6 +13,12 @@ public class MapDictionary implements Dictionary {
     private Map <String, Set<String>> mapDictionary; // Stores all the contents of the dictionary file
 
     /**
+     * Answer 1.2)
+     * I've chosen HashMap after a lot of reading and testing due. For the specific needs of this class hashmap has better
+     * efficiency. In my tests it is at least 0.1s faster than TreeMap. This could be down to the fact that with HashMap
+     * get is O(1) where as with TreeMap get is O(log n). We are also not particularly concerned with an ordered set. For
+     * this exercise.
+     * ---------------------------------------------------------------------------------
      * Constructor for the ListDictionary class.
      *
      * This constructor accepts a String representing the path to the dictionary file. When the class is instantiated
@@ -22,7 +28,7 @@ public class MapDictionary implements Dictionary {
      */
     public MapDictionary(String path){
 
-        mapDictionary = new TreeMap<>();
+        mapDictionary = new HashMap<>();
         String word;
 
         // read in the file -- scanner is inside "try with resources" as it explicitly closes

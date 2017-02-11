@@ -117,10 +117,9 @@ public class TreeDictionary implements Dictionary {
      * PRECONDITION:
      * the char must be a lower case letter of the english alphabet.
      *
-     * @param n TreeDictionary object to add to the array of nodes.
      * @param c a lowercase letter of the alphabet, used to find the position in the array.
      */
-    public void setNode(TreeDictionary n, char c){
+    public void setNode(char c){
 
         // check if trying to create a node that already exists.
         if (children[convertToArrayVal(c)] != null) {
@@ -128,7 +127,7 @@ public class TreeDictionary implements Dictionary {
             throw new IllegalStateException("Trying to set a node that already exists");
         }
 
-        this.children[convertToArrayVal(c)] = n;
+        this.children[convertToArrayVal(c)] = new TreeDictionary();
     }
 
     /*
@@ -159,7 +158,7 @@ public class TreeDictionary implements Dictionary {
         // If there is no node at the needed position create one and add the word.
         if (getNode(c) == null) {
 
-            setNode(new TreeDictionary(), c);
+            setNode(c);
             getNode(c).addWord(nodeWord);
 
         // else the node exists and we can add the word as normal

@@ -27,7 +27,7 @@ package predictive;
  *
  * The signatureToWords method for the list class has a significant performance increase mostly due to the fact
  * that the List is only loaded once. Performance becomes more noticeable the more signatures are entered.
- * This is due to the (O)log n complexity of binary search.
+ * This is due to only having to access the main dictionary file once and the (O)log n complexity of binary search.
  *
  * Linearly iterating forward and back through the List after finding a match could prove problematic. It is unlikely
  * that there will be a big enough ammount of matching signatures that this will make a noticeable difference.
