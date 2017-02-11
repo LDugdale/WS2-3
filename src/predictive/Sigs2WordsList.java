@@ -21,6 +21,12 @@ package predictive;
  *  real    0m1.243s
  * ------------------------------------------------------------------------
  *
+ * The signatureToWords method for the list class has a significant performance increase mostly due to the fact
+ * that the List is only loaded once. Performance becomes more noticeable the more signatures are entered.
+ * This is due to the (O)log n complexity of binary search.
+ *
+ * Linearly iterating forward and back through the List after finding a match could prove problematic.
+ *
  */
 public class Sigs2WordsList {
     public static void main(String[] args) {

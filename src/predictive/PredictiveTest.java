@@ -27,6 +27,38 @@ public class PredictiveTest {
      * Testing PredictivePrototype class
      */
     /**
+     * isValidWord Test
+     */
+    @Test
+    public void isValidWordTest1(){
+
+        assertTrue(pp.isValidWord("hello"));
+    }
+
+    @Test
+    public void isValidWordTest2(){
+
+        assertFalse(pp.isValidWord(""));
+    }
+
+    @Test
+    public void isValidWordTest3(){
+
+        assertFalse(pp.isValidWord("1"));
+    }
+
+    @Test
+    public void isValidWordTest4(){
+
+        assertTrue(pp.isValidWord("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMOPQRSTUVWXYZ"));
+    }
+
+    @Test
+    public void isValidWordTest5(){
+
+        assertFalse(pp.isValidWord(" "));
+    }
+    /**
      * signatureToWords Test
      */
     @Test
@@ -167,7 +199,7 @@ public class PredictiveTest {
         expected.add("ioof");
         expected.add("ione");
 
-        assertEquals(expected, actual );
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -179,7 +211,7 @@ public class PredictiveTest {
         expected.add("u");
         expected.add("v");
 
-        assertEquals(expected, actual );
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -187,7 +219,7 @@ public class PredictiveTest {
 
         Set<String> actual  = ld.signatureToWords("");
         Set<String> expected  = new HashSet<>();
-        assertEquals(expected, actual );
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -199,7 +231,7 @@ public class PredictiveTest {
         expected.add("b");
         expected.add("c");
 
-        assertEquals(expected, actual );
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -208,7 +240,7 @@ public class PredictiveTest {
         Set<String> actual  = ld.signatureToWords("1");
         Set<String> expected  = new HashSet<>();
 
-        assertEquals(expected, actual );
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -217,7 +249,7 @@ public class PredictiveTest {
         Set<String> actual  = ld.signatureToWords("99999999999999999999");
         Set<String> expected  = new HashSet<>();
 
-        assertEquals(expected, actual );
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -226,7 +258,7 @@ public class PredictiveTest {
         Set<String> actual  = ld.signatureToWords("!£$%^&*()_+-=]}{[~#@':;?/>.<,|¬`|\\abcdefghijklmnopqrstuvwxqzABCDEFGHIJKLMOPQRSTUVWXYZ");
         Set<String> expected  = new HashSet<>();
 
-        assertEquals(expected, actual );
+        assertEquals(expected, actual);
     }
 
     /**

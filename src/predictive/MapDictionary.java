@@ -26,7 +26,7 @@ public class MapDictionary implements Dictionary {
      */
     public MapDictionary(String path){
 
-        mapDictionary = new TreeMap<>();
+        mapDictionary = new HashMap<>();
         String word;
 
         // read in the file -- scanner is inside "try with resources" as it explicitly closes
@@ -60,7 +60,7 @@ public class MapDictionary implements Dictionary {
     public Set<String> signatureToWords(String signature) {
 
         // in keeping with the other classes if the signature doesnt exist return and empty list instead of null, this is done for consistency
-        return (mapDictionary.get(signature)) == null ? new HashSet<>() : mapDictionary.get(signature);
+        return (mapDictionary.get(signature) == null) ? new HashSet<>() : mapDictionary.get(signature);
     }
 
 

@@ -243,6 +243,9 @@ public class TreeDictionary implements Dictionary {
      * convertToArrayVal is used for converting a character ( including and between a - z and A - Z) to its
      * corresponding keypad value. Used for fetching and setting nodes in the array.
      *
+     * PRECONDITION:
+     * char c must be a lower case alphabet character including and between a - z
+     *
      * @param c
      * @return
      */

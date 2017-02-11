@@ -21,6 +21,9 @@ package predictive;
  *  real    0m11.954s
  * ------------------------------------------------------------------------
  *
+ * As the method signatureToWords is scanning the dictionary and iterating though it each time a signature
+ * is given the method is very slow.
+ *
  *
  */
 public class Sigs2WordsProto {

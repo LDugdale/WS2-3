@@ -121,10 +121,15 @@ public class PredictivePrototype {
      */
     public static boolean isValidWord(String word){
 
+        // check if string is empty
+        if (word.isEmpty()){
+            return false;
+        }
+
         // loop through the chars in the String word
         for (char c : word.toCharArray()) {
             // if char is not between a-z and A-Z return false
-            if(!Character.isLetter(c)) {
+            if(!Character.isLetter(c) ) {
                 return false;
             }
         }
