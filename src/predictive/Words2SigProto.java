@@ -1,7 +1,7 @@
 package predictive;
 
 /**
- * @Author Laurie Dugdale
+ * @author Laurie Dugdale
  *
  *  ----------------------------------------------------------------------
  *  Prototype Dictionary time for command -

@@ -2,7 +2,7 @@ package predictive;
 import java.math.BigInteger;
 
 /**
- * @Author Laurie Dugdale
+ * @author Laurie Dugdale
  */
 public class WordSig implements Comparable<WordSig> {
 

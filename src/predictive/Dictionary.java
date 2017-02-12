@@ -3,7 +3,7 @@ import java.util.Set;
 /**
  * Dictionary interface
  *
- * @Author Laurie Dugdale
+ * @author Laurie Dugdale
  */
 public interface Dictionary {
 

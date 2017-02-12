@@ -1,7 +1,7 @@
 package predictive;
 
 /**
- * @Author Laurie Dugdale
+ * @author Laurie Dugdale
  *
  * Used for quick testing of the dictionary classes
  *
@@ -11,7 +11,7 @@ public class InformalTesting {
     public static void main(String[] args) {
 
         PredictivePrototype pp1 = new PredictivePrototype();
-        System.out.println(pp1.signatureToWords("4663"));
+        System.out.println(pp1.signatureToWords("04336"));
 //        long startTime = System.nanoTime();
 //        System.out.println(wordToSignature("enterprise"));
 //        long endTime = System.nanoTime();

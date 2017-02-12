@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * 4 Prefix-matching (25%)
  *
- * @Author Laurie Dugdale
+ * @author Laurie Dugdale
  */
 public class TreeDictionary implements Dictionary {
 

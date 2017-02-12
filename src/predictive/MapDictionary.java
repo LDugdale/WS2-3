@@ -6,7 +6,7 @@ import java.util.*;
 /**
  * 3 More efficiency (25%)
  *
- * @Author Laurie Dugdale
+ * @author Laurie Dugdale
  */
 public class MapDictionary implements Dictionary {
 
@@ -16,7 +16,7 @@ public class MapDictionary implements Dictionary {
      * Answer 1.2)
      * I've chosen HashMap after a lot of reading and testing. For the specific needs of this class hashmap has better
      * efficiency. In my tests it is at least 0.1s faster than TreeMap. This could be down to the fact that with HashMap
-     * get is O(1) where as with TreeMap get is O(log n). We are also not particularly concerned with an ordered set. For
+     * get is O(1) where as with TreeMap get is O(log n). We are also not particularly concerned with an ordered set for
      * this exercise.
      * ---------------------------------------------------------------------------------
      * Constructor for the ListDictionary class.

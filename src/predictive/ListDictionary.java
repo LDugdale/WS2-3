@@ -6,7 +6,7 @@ import java.util.*;
 /**
  * 2 Storing and searching a dictionary(20%)
  *
- * @Author Laurie Dugdale
+ * @author Laurie Dugdale
  */
 public class ListDictionary implements Dictionary {
 
@@ -33,11 +33,11 @@ public class ListDictionary implements Dictionary {
             while ( in.hasNextLine() ) {
 
                 // check if current word is valid
-                if(!PredictivePrototype.isValidWord(word = in.nextLine())) {
-                    continue;
+                if(PredictivePrototype.isValidWord(word = in.nextLine())) {
+                    word = word.toLowerCase();
+                    listDictionary.add(new WordSig(word, PredictivePrototype.wordToSignature(word)));
                 }
-                word = word.toLowerCase();
-                listDictionary.add(new WordSig(word, PredictivePrototype.wordToSignature(word)));
+
             }
 
         } catch(IOException e){
