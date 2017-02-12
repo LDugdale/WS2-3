@@ -38,10 +38,27 @@ public class Sigs2WordsTree {
 
     public static void main(String[] args) {
 
+        // create TreeDictionary object and record the time
+        long beginning = System.nanoTime();
         Dictionary d = new TreeDictionary("words");
+        long end = System.nanoTime();
 
+        // print the start time
+        System.out.println("Sigs2WordsTree setup : " + (end - beginning) + "ns");
+
+        // loop inputs and record time at the beginning and end
+        beginning = System.nanoTime();
         for(String s : args){
+
             System.out.println(d.signatureToWords(s));
+
         }
+        end = System.nanoTime();
+
+        // print the look up time
+        System.out.println("Sigs2WordsTree lookup : " + (end - beginning) + "ns");
+
     }
+
+
 }

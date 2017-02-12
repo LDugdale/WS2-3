@@ -60,10 +60,24 @@ public class Sigs2WordsMap {
 
     public static void main(String[] args) {
 
+        // create MapDictionary object and record the time
+        long beginning = System.nanoTime();
         Dictionary d = new MapDictionary("words");
+        long end = System.nanoTime();
 
+        // print the start time
+        System.out.println("Sigs2WordsMap setup : " + (end - beginning) + "ns");
+
+        // loop inputs and record time at the beginning and end
+        beginning = System.nanoTime();
         for(String s : args){
+
             System.out.println(d.signatureToWords(s));
+
         }
+        end = System.nanoTime();
+
+        // print the look up time
+        System.out.println("Sigs2WordsMap lookup : " + (end - beginning) + "ns");
     }
 }

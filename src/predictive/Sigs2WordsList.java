@@ -37,10 +37,25 @@ public class Sigs2WordsList {
 
     public static void main(String[] args) {
 
+        // create MapDictionary object and record the time
+        long beginning = System.nanoTime();
         ListDictionary ld = new ListDictionary("words");
+        long end = System.nanoTime();
 
-        for (String s : args) {
+        // print the start time
+        System.out.println("Sigs2WordsList setup : " + (end - beginning) + "ns");
+
+        // loop inputs and record time at the beginning and end
+        beginning = System.nanoTime();
+        for(String s : args){
+
             System.out.println(ld.signatureToWords(s));
+
         }
+        end = System.nanoTime();
+
+        // print the look up time
+        System.out.println("Sigs2WordsList lookup : " + (end - beginning) + "ns");
+
     }
 }

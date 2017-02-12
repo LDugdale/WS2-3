@@ -246,8 +246,8 @@ public class TreeDictionary implements Dictionary {
      * PRECONDITION:
      * char c must be a lower case alphabet character including and between a - z
      *
-     * @param c
-     * @return
+     * @param c the character that needs to be assigned to an array position.
+     * @return an int that relates to the position of the array that character belongs in.
      */
     private int convertToArrayVal(char c){
 

@@ -34,9 +34,18 @@ public class Sigs2WordsProto {
 
     public static void main(String[] args) {
 
+
+        // loop inputs and record time at the beginning and end
+        long beginning = System.nanoTime();
         for(String s : args){
+
             System.out.println(PredictivePrototype.signatureToWords(s));
+
         }
+        long end = System.nanoTime();
+
+        // print the look up time
+        System.out.println("Sigs2WordsProto lookup : " + (end - beginning) + "ns");
 
     }
 }
