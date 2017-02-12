@@ -158,15 +158,4 @@ public class PredictivePrototype {
 
         return false;
     }
-
-    public static void main(String [] args){
-
-        System.out.println(signatureToWords("65876"));
-//        long startTime = System.nanoTime();
-//        System.out.println(wordToSignature("enterprise"));
-//        long endTime = System.nanoTime();
-//
-//        System.out.println(endTime - startTime);
-
-    }
 }

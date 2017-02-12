@@ -34,6 +34,7 @@ package predictive;
  *
  */
 public class Sigs2WordsList {
+
     public static void main(String[] args) {
 
         ListDictionary ld = new ListDictionary("words");

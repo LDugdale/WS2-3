@@ -107,7 +107,7 @@ public class TreeDictionary implements Dictionary {
     }
 
     /**
-     * Getter for the nodes in the tree
+     * Setter for the nodes in the tree - adds an empty tree to the specified position in the children array
      * Looking up the array is done using char.
      *
      * e.g.
