@@ -17,7 +17,7 @@ public class MapDictionary implements Dictionary {
      *
      * I've chosen TreeMap after a lot of testing. after testing this class TreeMap has better efficiency.
      * whilst it was overall around 0.1s slower this was down to adding the dictionary to the Map. during lookup
-     * TreeMap consistently outperformed HashMap. The documentation states that with HashMap get is O(1)
+     * TreeMap consistently outperformed HashMap. The documentation states that with HashMap the get method is O(1)
      * where as with TreeMap get is O(log n). This could mean that HashMap scales better. However I've yet to run a test
      * that proves this.
      * ---------------------------------------------------------------------------------
@@ -30,7 +30,7 @@ public class MapDictionary implements Dictionary {
      */
     public MapDictionary(String path){
 
-        mapDictionary = new HashMap<>();
+        mapDictionary = new TreeMap<>();
         String word;
 
         // read in the file -- scanner is inside "try with resources" as it explicitly closes
