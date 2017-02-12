@@ -3,27 +3,44 @@ package predictive;
 /**
  * @author Laurie Dugdale
  *
+ *  Dictionary used "words"
  *  ----------------------------------------------------------------------
- *  Prototype Dictionary time for command -
- *  time java predictive.Sigs2WordsProto 4663
- *  real	0m0.671s
+ *  Command -
+ *  time java predictive.Sigs2WordsTree 4663
+ *  Timings -
+ *  setup : 1835190104ns
+ *  lookup : 525494ns
+ *  real : 0m1.923s
  *  ----------------------------------------------------------------------
- *  Prototype Dictionary time for command -
- *  time java predictive.Sigs2WordsProto 4663 876 89 4 245
- *  real	0m2.069s
+ *  Command -
+ *  time java predictive.Sigs2WordsTree 4663 876 89 4 245
+ *  Timings -
+ *  setup : 1832915380ns
+ *  lookup : 8316939ns
+ *  real : 0m2.156s
  * ----------------------------------------------------------------------
- *  Tree Dictionary time for command -
+ *  Command -
  *  time java predictive.Sigs2WordsTree 4663 876 89 4 245 2345 9 8657 65 4646 46662368 885226 8852266
- *  real	0m1.968s
- * ------------------------------------------------------------------------
- *  Tree Dictionary time for command -
+ *  Timings -
+ *  setup : 1760037444ns
+ *  lookup : 140770164ns
+ *  real : 0m1.995s
+ * ----------------------------------------------------------------------
+ *  Command -
  *  time java predictive.Sigs2WordsTree 4663 876 89 4 245 2345 9 8657 65 4646 46662368 885226 8852266 76325 543543 97 654 2 3 5 6 7 8 546 9227 923
- *  real	0m2.015s
- * ------------------------------------------------------------------------
- *  Tree Dictionary time for command -
+ *  Timings -
+ *  setup : 1819134951ns
+ *  lookup : 137364756ns
+ *  real : 0m2.044s
+ * -----------------------------------------------------------------------
+ *  Command -
  *  time java predictive.Sigs2WordsTree 4663 876 89 4 245 2345 9 8657 65 4646 46662368 885226 8852266 76325 543543 97 654 2 3 5 6 7 8 546 9227 923 22737737 227336 22774 2277 227653 4637 463843 465336 4653 2253 2653 6837 6837242733 356837 56837 63837
- *  real	0m2.072s
+ *  Timings -
+ *  setup : 1744249977ns
+ *  lookup : 144610764ns
+ *  real : 0m1.979s
  * ------------------------------------------------------------------------
+
  *
  * The TreeDictionary class in terms of performance is perhaps not the best choice, loading the words into the
  * dictionary is very inefficient with this particular requested implementation. and looping through each set to
@@ -32,6 +49,9 @@ package predictive;
  * However for achieving the main goal of a t9 system it is a step closer to the ideal solution as the tree data structure
  * allows us to look at all the possible choices the user might wish to type. Something that is not easily done when
  * utilizing a basic, list, set or map.
+ *
+ * For speed MapDictionary is the better class is better but for Utility and achieving the goal of a T9 predictive text
+ * system TreeDictionary makes the most sense.
  *
  */
 public class Sigs2WordsTree {

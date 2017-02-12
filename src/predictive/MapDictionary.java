@@ -14,10 +14,12 @@ public class MapDictionary implements Dictionary {
 
     /**
      * Answer 1.2)
-     * I've chosen HashMap after a lot of reading and testing. For the specific needs of this class hashmap has better
-     * efficiency. In my tests it is at least 0.1s faster than TreeMap. This could be down to the fact that with HashMap
-     * get is O(1) where as with TreeMap get is O(log n). We are also not particularly concerned with an ordered set for
-     * this exercise.
+     *
+     * I've chosen TreeMap after a lot of testing. after testing this class TreeMap has better efficiency.
+     * whilst it was overall around 0.1s slower this was down to adding the dictionary to the Map. during lookup
+     * TreeMap consistently outperformed HashMap. The documentation states that with HashMap get is O(1)
+     * where as with TreeMap get is O(log n). This could mean that HashMap scales better. However I've yet to run a test
+     * that proves this.
      * ---------------------------------------------------------------------------------
      * Constructor for the ListDictionary class.
      *

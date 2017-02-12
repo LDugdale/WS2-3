@@ -3,26 +3,42 @@ package predictive;
 /**
  * @author Laurie Dugdale
  *
+ *  Dictionary used "words"
  *  ----------------------------------------------------------------------
- *  List Dictionary time for command -
+ *  Command -
  *  time java predictive.Sigs2WordsList 4663
- *  real	0m0.654s
+ *  Timings -
+ *  setup : 573004063ns
+ *  lookup : 329522ns
+ *  real : 0m0.654s
  *  ----------------------------------------------------------------------
- *  List Dictionary time for command -
+ *  Command -
  *  time java predictive.Sigs2WordsList 4663 876 89 4 245
- *  real	0m0.665s
+ *  Timings -
+ *  setup : 567320268ns
+ *  lookup : 516141ns
+ *  real : 0m0.665s
  * ----------------------------------------------------------------------
- *  List Dictionary time for command -
+ *  Command -
  *  time java predictive.Sigs2WordsList 4663 876 89 4 245 2345 9 8657 65 4646 46662368 885226 8852266
- *  real	0m0.641s
+ *  Timings -
+ *  setup : 580617645ns
+ *  lookup : 778888ns
+ *  real : 0m0.641s
  * ------------------------------------------------------------------------
- *  List Dictionary time for command -
+ *  Command -
  *  time java predictive.Sigs2WordsList 4663 876 89 4 245 2345 9 8657 65 4646 46662368 885226 8852266 76325 543543 97 654 2 3 5 6 7 8 546 9227 923
- *  real	0m0.659s
+ *  Timings -
+ *  setup : 552570535ns
+ *  lookup : 1235544ns
+ *  real : 0m0.659s
  * ------------------------------------------------------------------------
- *  List Dictionary time for command -
+ *  Command -
  *  time java predictive.Sigs2WordsList 4663 876 89 4 245 2345 9 8657 65 4646 46662368 885226 8852266 76325 543543 97 654 2 3 5 6 7 8 546 9227 923 22737737 227336 22774 2277 227653 4637 463843 465336 4653 2253 2653 6837 6837242733 356837 56837 63837
- *  real	0m0.693s
+ *  Timings -
+ *  setup : 578158406ns
+ *  lookup : 1748063ns
+ *  real : 0m0.693s
  * ------------------------------------------------------------------------
  *
  * The signatureToWords method for the list class has a significant performance increase mostly due to the fact
@@ -37,7 +53,7 @@ public class Sigs2WordsList {
 
     public static void main(String[] args) {
 
-        // create MapDictionary object and record the time
+        // create ListDictionary object and record the time
         long beginning = System.nanoTime();
         ListDictionary ld = new ListDictionary("words");
         long end = System.nanoTime();
